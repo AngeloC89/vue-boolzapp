@@ -8,6 +8,7 @@ const { createApp } = Vue;
 createApp({
   data() { //metodo data()
     return {
+      contacts,
      
     }
   },
@@ -19,6 +20,7 @@ createApp({
   
   },
   mounted() {
+    console.log(contacts)
    
 
   },

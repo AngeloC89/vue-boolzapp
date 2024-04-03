@@ -3,53 +3,60 @@
     margin: 0;
     box-sizing: border-box;
 }
- 
-#app{
+
+#app {
     height: 100vh;
     width: 100%;
-    background: linear-gradient(180deg,#009688 20%, #D8DBD5 20% );
+    background: linear-gradient(180deg, #009688 20%, #D8DBD5 20%);
 
 }
 
-i{
+img{
+  width: 17%;
+}
+
+i {
     color: #B1B1B1;
     margin: auto 10px;
 }
 
-.debug{
+.debug {
     border: 2px solid red;
 }
 
 
-/* contacts */
-.contacts{
+/************************* contacts *********************/
+
+/* div grande sinistro */
+.contactsC {
     width: 40%;
 
 }
 
-#bell{
+#bell {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto 10px;
     width: 10%;
     aspect-ratio: 1 / 1;
-  background-color: white;
+    background-color: white;
     border-radius: 50%;
 }
 
-#bell i{
+#bell i {
     color: rgb(142, 218, 252);
-  
+
 }
 
-nav{
+nav {
     height: 75px;
     display: flex;
     justify-content: space-between;
     background-color: #EAEAEA;
 }
-.notice{
+
+.notice {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -57,34 +64,39 @@ nav{
     background-color: rgb(142, 218, 252);
 }
 
-.search{
+.search {
     background-color: #FAFAFA;
 
 }
 
-#listcontact{
+#listcontacts {
     height: calc(100% - 200px);
     overflow-y: auto;
     background-color: white;
 }
 
+#avatar{
+    width: 20%;
+}
+
 
 
 /* chat */
-.t-main{
+.t-main {
     height: calc(100% - 150px);
     background-image: url(../img/mine.jpg);
     overflow-y: auto;
 }
-.chat{
+
+.chat {
     width: 60%;
 
 }
 
-#chatIn{
+#chatIn {
     width: calc(100% - 80px);
 }
-#mainchat div{
+
+#mainchat div {
     width: 40px;
 }
-
