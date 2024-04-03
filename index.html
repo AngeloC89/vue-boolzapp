@@ -22,7 +22,7 @@
         <div class="container p-0 debug h-100 d-flex ">
             <!-- left side contactList -->
             <div class="contactsC debug">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <nav class="navbar navbar-expand-lg p-0  bg-body-tertiary">
                     <div class=" w-50 h-100 d-flex justify-content-start align-items-center  left">
                         <img class="img-fluid rounded-circle" src="./img/avatar_2.jpg" alt="Angelo">
                         <div>
@@ -47,8 +47,8 @@
                 <div class="p-1 search">
                     <input class="form-control me-2" type="search" placeholder="&#128269; search" aria-label="Search">
                 </div>
-                <div id="listcontacts">
-                    <div id="contact" v-for="(item, index) in contacts" class="d-flex justify-content-between m-2  ">
+                <div id="listcontacts" >
+                    <div id="contact" v-for="(item, index) in contacts" class="d-flex justify-content-between m-2  " :class="{'active' : this.activeId === item.id }">
                        <img class="img-fluid rounded-circle m-2" :src="item.avatar" :alt="item.name">
                         <div id="itemtext" class="m-2">
                             <h5>{{item.name}}</h5>

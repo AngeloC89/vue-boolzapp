@@ -9,6 +9,7 @@ createApp({
   data() { //metodo data()
     return {
       contacts,
+      activeId: 1,
      
     }
   },
@@ -17,6 +18,9 @@ createApp({
 
   },
   computed: {
+    activeItem(){
+      return this.contacts.find((el)=> el.id === this.activeId)
+    }
   
   },
   mounted() {
