@@ -48,7 +48,7 @@
                     <input class="form-control me-2" type="search" placeholder="&#128269; search" aria-label="Search">
                 </div>
                 <div id="listcontacts" >
-                    <div id="contact" v-for="(item, index) in contacts" class="d-flex justify-content-between m-2  " :class="{'active' : this.activeId === item.id }">
+                    <div id="contact" v-for="(item, index) in contacts" class="d-flex justify-content-between " :class="{'active' : this.activeId === item.id }" @click="clickActiveItem(item.id)">
                        <img class="img-fluid rounded-circle m-2" :src="item.avatar" :alt="item.name">
                         <div id="itemtext" class="m-2">
                             <h5>{{item.name}}</h5>

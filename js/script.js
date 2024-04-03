@@ -14,13 +14,16 @@ createApp({
     }
   },
   methods: {
-  
-
+    clickActiveItem(id){
+      return this.activeId = id
+      
   },
+},
   computed: {
     activeItem(){
       return this.contacts.find((el)=> el.id === this.activeId)
-    }
+    },
+   
   
   },
   mounted() {

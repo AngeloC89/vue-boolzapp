@@ -106,5 +106,7 @@ nav {
 }
 
 .active{
+    padding: 5px;
     background-color: rgba(128, 128, 128, 0.247);
+    border: 1px solid rgba(128, 128, 128, 0.722);
 }
