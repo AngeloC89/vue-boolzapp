@@ -21,7 +21,7 @@
     <div id="app" class="py-4 ">
         <div class="container p-0 debug h-100 d-flex ">
             <!-- left side contactList -->
-            <div class="contactsC debug">
+            <div class="contactsC">
                 <nav class="navbar navbar-expand-lg p-0  bg-body-tertiary">
                     <div class=" w-50 h-100 d-flex justify-content-start align-items-center  left">
                         <img class="img-fluid rounded-circle" src="./img/avatar_2.jpg" alt="Angelo">
@@ -47,23 +47,29 @@
                 <div class="p-1 search">
                     <input class="form-control me-2" type="search" placeholder="&#128269; search" aria-label="Search">
                 </div>
-                <div id="listcontacts" >
-                    <div id="contact" v-for="(item, index) in contacts" class="d-flex justify-content-between " :class="{'active' : this.activeId === item.id }" @click="clickActiveItem(item.id)">
-                       <img class="img-fluid rounded-circle m-2" :src="item.avatar" :alt="item.name">
+                <div id="listcontacts">
+                    <div id="contact" v-for="(item, index) in contacts" class="d-flex justify-content-between p-1"
+                        :class="{'active' : this.activeId === item.id }" @click="clickActiveItem(item.id)"
+                        :key="item.id">
+                        <img class="img-fluid rounded-circle m-2" :src="item.avatar" :alt="item.name">
                         <div id="itemtext" class="m-2">
                             <h5>{{item.name}}</h5>
                             <span>Ultimo messaggio inviato</span>
                         </div>
                         <small class="ms-auto ">12:00</small>
                     </div>
-                  
-
                 </div>
             </div>
             <!-- right side with chat -->
-            <div class="chat debug">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="debug w-50 h-100 d-flex justify-content-start align-items-center  left">left</div>
+            <div class="chat">
+                <nav class="navbar navbar-expand-lg p-0  bg-body-tertiary">
+                    <div class=" w-50 h-100 d-flex justify-content-start align-items-center  left">
+                        <img class="img-fluid rounded-circle m-2" :src="activeItem.avatar" :alt="activeItem.name">
+                        <div class="m-2">
+                            <h5>{{activeItem.name}}</h5>
+                            <span>Ultimo accesso alle 12:00</span>
+                        </div>
+                    </div>
                     <div class="w-50 h-100 d-flex justify-content-end align-items-center  right">
                         <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                         <i class="fa-solid fa-paperclip fa-xl"></i>

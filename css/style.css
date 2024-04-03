@@ -12,7 +12,7 @@
 }
 
 #contact img{
-  width: 15%;
+  width: 14%;
 }
 
 i {
@@ -34,7 +34,11 @@ i {
 }
 
 nav img{
-width: 20%;
+width: 25%;
+}
+
+.chat nav img{
+width: 17%;
 }
 
 #bell {
@@ -79,9 +83,6 @@ nav {
     background-color: white;
 }
 
-#avatar{
-    width: 20%;
-}
 
 
 
@@ -106,7 +107,7 @@ nav {
 }
 
 .active{
-    padding: 5px;
+  
     background-color: rgba(128, 128, 128, 0.247);
     border: 1px solid rgba(128, 128, 128, 0.722);
 }
