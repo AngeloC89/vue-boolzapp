@@ -11,8 +11,8 @@
 
 }
 
-#contact img{
-  width: 14%;
+#contact img {
+    width: 14%;
 }
 
 i {
@@ -30,15 +30,16 @@ i {
 /* div grande sinistro */
 .contactsC {
     width: 40%;
+    border-right: 2px solid #e1e1e1;
 
 }
 
-nav img{
-width: 25%;
+nav img {
+    width: 25%;
 }
 
-.chat nav img{
-width: 17%;
+.chat nav img {
+    width: 17%;
 }
 
 #bell {
@@ -106,8 +107,24 @@ nav {
     width: 40px;
 }
 
-.active{
-  
+.active {
+
     background-color: rgba(128, 128, 128, 0.247);
     border: 1px solid rgba(128, 128, 128, 0.722);
 }
+
+.sent {
+  margin-left: auto;
+    background-color: #D5F9BA;
+    border-radius: 13px 13px 13px 0px;
+ 
+}
+.received {
+    background-color: #ffffff ;
+    border-radius: 13px 13px 0px 13px;
+}
+.msg{
+    width: 200px;
+    padding: 10px;
+}
+
