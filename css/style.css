@@ -11,31 +11,80 @@
 
 }
 
+i{
+    color: #B1B1B1;
+    margin: auto 10px;
+}
+
 .debug{
     border: 2px solid red;
 }
 
+
+/* contacts */
 .contacts{
-    width: 30%;
+    width: 40%;
 
 }
 
-.chat{
-    width: 70%;
+#bell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 10px;
+    width: 10%;
+    aspect-ratio: 1 / 1;
+  background-color: white;
+    border-radius: 50%;
+}
 
+#bell i{
+    color: rgb(142, 218, 252);
+  
 }
 
 nav{
     height: 75px;
     display: flex;
     justify-content: space-between;
-    background-color: rgb(234, 234, 234);
+    background-color: #EAEAEA;
 }
 .notice{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     height: 80px;
     background-color: rgb(142, 218, 252);
 }
+
+.search{
+    background-color: #FAFAFA;
+
+}
+
+#listcontact{
+    height: calc(100% - 200px);
+    overflow-y: auto;
+    background-color: white;
+}
+
+
+
+/* chat */
 .t-main{
     height: calc(100% - 150px);
     background-image: url(../img/mine.jpg);
+    overflow-y: auto;
 }
+.chat{
+    width: 60%;
+
+}
+
+#chatIn{
+    width: calc(100% - 80px);
+}
+#mainchat div{
+    width: 40px;
+}
+

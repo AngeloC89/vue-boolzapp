@@ -20,24 +20,49 @@
 
     <div id="app" class="py-4 ">
         <div class="container p-0 debug h-100 d-flex ">
+            <!-- left side contactList -->
             <div class="contacts debug">
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-
+                    <div class="debug w-50 h-100 d-flex justify-content-start align-items-center  left">left</div>
+                    <div class="w-50 h-100 d-flex justify-content-end align-items-center  right">
+                        <i class="fa-solid fa-circle-notch fa-xl"></i>
+                        <i class="fa-solid fa-message fa-xl"></i>
+                        <i class="fa-solid fa-ellipsis-vertical  fa-xl"></i>
+                    </div>
                 </nav>
                 <div class="notice">
-
+                    <div id="bell">
+                        <i class="fa-solid fa-bell-slash fa-xl"></i>
+                    </div>
+                    <div>
+                        <h6>Ricevi notifiche di nuovi messaggi</h6>
+                        <span><a href="#">Attiva notifiche desktop</a></span>
+                    </div>
                 </div>
-                <div class="p-1">
+                <div class="p-1 search">
                     <input class="form-control me-2" type="search" placeholder="&#128269; search" aria-label="Search">
                 </div>
-                <div></div>
+                <div id="listcontact"></div>
             </div>
             <!-- right side with chat -->
             <div class="chat debug">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary"> </nav>
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="debug w-50 h-100 d-flex justify-content-start align-items-center  left">left</div>
+                    <div class="w-50 h-100 d-flex justify-content-end align-items-center  right">
+                        <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+                        <i class="fa-solid fa-paperclip fa-xl"></i>
+                        <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                    </div>
+                </nav>
                 <div class="t-main"></div>
-                <nav class="navbar navbar-expand-lg bg-body-tertiary"> </nav>
-               
+                <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mainchat">
+                    <div class="h-100  d-flex justify-content-center align-items-center "> <i
+                            class="fa-regular fa-face-smile"></i> </div>
+                    <input class="form-control" type="text" v-model="" id="chatIn">
+                    <div class="h-100  d-flex justify-content-center align-items-center "> <i
+                            class="fa-solid fa-microphone"></i> </div>
+                </nav>
+
             </div>
         </div>
 
