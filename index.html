@@ -92,11 +92,26 @@
                 <div class="t-main p-2">
                     <div class="p-2" v-for="(msg, index) in activeItem.messages">
                         <div class="msg" :class="msg.status">
+
+
+
+
+
                             <div class="d-flex justify-content-between">{{msg.message}}
-                                <div class="btn " @click="toggleMenu">
+                                <div class="btn " @click="openDropdown(index)">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </div>
+                                <ul v-if="currentMsg === index" id="listRemove" >
+                                    <li>Elimina messaggio</li>                             
+                                </ul>
                             </div>
+
+
+
+
+
+
+
                             <div class="date">{{msg.date}}</div>
                         </div>
                     </div>

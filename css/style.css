@@ -162,3 +162,25 @@ nav {
 .btn{
     padding: 0px;
 }
+
+#listRemove{
+    width: 180px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid rgb(142, 142, 142);
+    
+    position: absolute;
+    left: 120px;
+    top: 30px;
+    border-radius: 20px;
+    z-index: 2000;
+    
+}
+li:hover{
+    background-color: rgba(128, 128, 128, 0.376);
+}
+li{
+    padding:5px;
+    list-style: none;
+    margin: auto;
+}

@@ -14,6 +14,8 @@ createApp({
       activeId: 1,
       chatIn: '',
       searchItem: '',
+      currentMsg: -1,
+     
 
     }
   },
@@ -40,7 +42,13 @@ createApp({
         this.activeItem.messages.push(this.createMessag('ok', 'received'));
 
       }, 1000);
-
+    },
+    openDropdown(index){
+      if(this.currentMsg !== index){
+        this.currentMsg = index
+      }else {
+        this.currentMsg = -1
+      }
     },
 
   },
