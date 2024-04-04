@@ -21,8 +21,11 @@ createApp({
   },
   methods: {
     clickActiveItem(id) {
-      return this.activeId = id
+      this.activeId = id;
+      this.currentMsg = -1;
     },
+
+/**************** make a new message **************** */     
     createMessag(msg, status) {
       const newObj = {
         date: dt.now().setLocale('it').toFormat('dd/MM/yyyy HH:mm:ss'),
@@ -43,6 +46,7 @@ createApp({
 
       }, 1000);
     },
+// function for show dropdown of message with delete the message
     openDropdown(index){
       if(this.currentMsg !== index){
         this.currentMsg = index
@@ -50,17 +54,22 @@ createApp({
         this.currentMsg = -1
       }
     },
+    //function for remove the message
+    removeMsg(index){
+      this.activeItem.messages.splice(index, 1);
+      this.currentMsg = -1;
+
+
+    }
 
   },
   computed: {
     activeItem() {
       return this.contacts.find((el) => el.id === this.activeId)
     },
+
     searchList() {
       return this.contacts.filter((el) => el.name.toLowerCase().includes(this.searchItem.toLowerCase()));
-
-
-
     },
 
 

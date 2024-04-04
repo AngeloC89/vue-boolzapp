@@ -92,26 +92,14 @@
                 <div class="t-main p-2">
                     <div class="p-2" v-for="(msg, index) in activeItem.messages">
                         <div class="msg" :class="msg.status">
-
-
-
-
-
                             <div class="d-flex justify-content-between">{{msg.message}}
                                 <div class="btn " @click="openDropdown(index)">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </div>
-                                <ul v-if="currentMsg === index" id="listRemove" >
-                                    <li>Elimina messaggio</li>                             
+                                <ul v-if="currentMsg === index" id="listRemove">
+                                    <li @click=" removeMsg(index)">Elimina messaggio</li>
                                 </ul>
                             </div>
-
-
-
-
-
-
-
                             <div class="date">{{msg.date}}</div>
                         </div>
                     </div>
@@ -125,8 +113,8 @@
                         placeholder="Scrivi un messaggio..." @keyup.enter="newMessag()">
                     <div class="h-100  d-flex justify-content-center align-items-center ">
                         <i v-if="!chatIn" class="fa-solid fa-microphone"></i>
-                        <div v-else type="button" @click="newMessag()" ><i class="fa-solid fa-paper-plane" ></i></div>
-                        
+                        <div v-else type="button" @click="newMessag()"><i class="fa-solid fa-paper-plane"></i></div>
+
                     </div>
                 </nav>
 
