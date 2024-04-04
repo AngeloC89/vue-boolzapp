@@ -67,7 +67,8 @@
                             <h5>{{item.name}}</h5>
                             <span>Ultimo messaggio inviato</span>
                         </div>
-                        <small class="ms-auto ">ORARIO</small>
+
+                        <small class="ms-auto ">12:00</small>
                     </div>
                 </div>
             </div>
@@ -91,16 +92,15 @@
                 <div class="t-main p-2">
                     <div class="p-2" v-for="(msg, index) in activeItem.messages">
                         <div class="msg" :class="msg.status">
-                            <div class="d-flex justify-content-between">{{msg.message}}<div class="btn "><i
-                                        class="fa-solid fa-chevron-down"></i></div>
+                            <div class="d-flex justify-content-between">{{msg.message}}
+                                <div class="btn " @click="toggleMenu">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
                             </div>
-
                             <div class="date">{{msg.date}}</div>
-
                         </div>
                     </div>
                 </div>
-
                 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mainchat">
                     <div class="h-100  d-flex justify-content-center align-items-center "> <i
                             class="fa-regular fa-face-smile fa-xl"></i> </div>
@@ -109,7 +109,9 @@
                     <input class="form-control" type="text" v-model="chatIn" id="chatIn"
                         placeholder="Scrivi un messaggio..." @keyup.enter="newMessag()">
                     <div class="h-100  d-flex justify-content-center align-items-center ">
-                        <i class="fa-solid fa-microphone fa-xl"></i>
+                        <i v-if="!chatIn" class="fa-solid fa-microphone"></i>
+                        <div v-else type="button" @click="newMessag()" ><i class="fa-solid fa-paper-plane" ></i></div>
+                        
                     </div>
                 </nav>
 
