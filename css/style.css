@@ -7,12 +7,11 @@
 #app {
     height: 100vh;
     width: 100%;
-    background: linear-gradient(180deg, #009688 16%, #D8DBD5 16%);
+    background: linear-gradient(180deg, #009688 15%, #D8DBD5 15%);
 
 }
-
-#contact img {
-    width: 14%;
+img {
+    width: 70px;
 }
 
 i {
@@ -34,13 +33,6 @@ i {
 
 }
 
-nav img {
-    width: 25%;
-}
-
-.chat nav img {
-    width: 17%;
-}
 
 #bell {
     display: flex;
@@ -114,17 +106,53 @@ nav {
 }
 
 .sent {
-  margin-left: auto;
+    margin-left: auto;
     background-color: #D5F9BA;
-    border-radius: 13px 13px 13px 0px;
- 
-}
-.received {
-    background-color: #ffffff ;
-    border-radius: 13px 13px 0px 13px;
-}
-.msg{
-    width: 200px;
-    padding: 10px;
+    /* border-radius: 13px 13px 13px 0px; */
+
 }
 
+.received {
+    background-color: #ffffff;
+    /* border-radius: 13px 13px 0px 13px; */
+}
+
+.msg {
+    max-width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+
+
+}
+
+/* Creo il triangolo */
+.sent:after,
+.received:after {
+    content: "";
+    display: block;
+    width: 0;
+    border-width: 26px 7px 0;
+    border-style: solid;
+  
+}
+
+.sent:after{
+    border-color: #D5F9BA transparent;
+    position: absolute;
+    bottom: -20px;
+    right: 0px;
+    transform: rotate(-30deg);
+}
+.received:after{
+    border-color: #ffffff transparent;
+    position: absolute;
+    bottom: -20px;
+    left: 0px;
+    transform: rotate(30deg);
+}
+
+.date{
+    text-align: end;
+    font-size: 10px;
+}
