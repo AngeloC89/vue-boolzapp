@@ -50,8 +50,8 @@ createApp({
     },
     searchList() {
       return this.contacts.filter((el) => el.name.toLowerCase().includes(this.searchItem.toLowerCase()));
-      
-      
+
+
 
     },
 

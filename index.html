@@ -24,18 +24,21 @@
             <!-- left side contactList -->
             <div class="contactsC">
                 <nav class="navbar navbar-expand-lg p-0  bg-body-tertiary">
+                    <!-- icon with my avatar and name -->
                     <div class=" w-50 h-100 d-flex justify-content-start align-items-center  left">
                         <img class="img-fluid rounded-circle" src="./img/avatar_2.jpg" alt="Angelo">
                         <div>
                             <h5>Angelo</h5>
                         </div>
                     </div>
+                    <!-- button side left -->
                     <div class="w-50 h-100 d-flex justify-content-end align-items-center  right">
-                        <i class="fa-solid fa-circle-notch fa-xl"></i>
-                        <i class="fa-solid fa-message fa-xl"></i>
-                        <i class="fa-solid fa-ellipsis-vertical  fa-xl"></i>
+                        <i class="fa-solid fa-circle-notch fa-lg"></i>
+                        <i class="fa-solid fa-message fa-lg"></i>
+                        <i class="fa-solid fa-ellipsis-vertical  fa-lg"></i>
                     </div>
                 </nav>
+                <!-- section for active notice of colour blue -->
                 <div class="notice">
                     <div id="bell">
                         <i class="fa-solid fa-bell-slash fa-xl"></i>
@@ -45,14 +48,21 @@
                         <span><a href="#">Attiva notifiche desktop</a></span>
                     </div>
                 </div>
+                <!-- search bar for search a contact -->
                 <div class="p-1 search">
-                    <input class="form-control me-2" type="search" placeholder="&#128269; search" aria-label="Search" v-model="searchItem">
+                    <input class="form-control me-2" type="search" placeholder="&#128269; search" aria-label="Search"
+                        v-model="searchItem">
                 </div>
+                <!-- contacts list  -->
                 <div id="listcontacts">
-                    <div id="contact" v-for="(item, index) in searchList" class="d-flex justify-content-between align p-1"
+                    <div class="alert alert-danger" v-if="searchList.length < 1">Nessuna corrispondenza</div>
+                    <div id="contact" v-for="(item, index) in searchList"
+                        class="d-flex justify-content-between align p-1 active:hover"
                         :class="{'active' : this.activeId === item.id }" @click="clickActiveItem(item.id)"
                         :key="item.id">
-                        <img class="img-fluid rounded-circle m-2" :src="item.avatar" :alt="item.name">
+                        <div>
+                            <img class="img-fluid rounded-circle m-2" :src="item.avatar" :alt="item.name">
+                        </div>
                         <div id="itemtext" class="m-2">
                             <h5>{{item.name}}</h5>
                             <span>Ultimo messaggio inviato</span>
@@ -77,23 +87,27 @@
                         <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                     </div>
                 </nav>
-
+                <!-- section with messages sent and received -->
                 <div class="t-main p-2">
                     <div class="p-2" v-for="(msg, index) in activeItem.messages">
                         <div class="msg" :class="msg.status">
-                            <div>{{msg.message}}</div>
+                            <div class="d-flex justify-content-between">{{msg.message}}<div class="btn "><i
+                                        class="fa-solid fa-chevron-down"></i></div>
+                            </div>
+
                             <div class="date">{{msg.date}}</div>
+
                         </div>
                     </div>
-
                 </div>
 
                 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mainchat">
                     <div class="h-100  d-flex justify-content-center align-items-center "> <i
                             class="fa-regular fa-face-smile fa-xl"></i> </div>
 
-                            <!-- input sent a new message -->
-                    <input class="form-control" type="text" v-model="chatIn" id="chatIn" placeholder="Scrivi un messaggio..." @keyup.enter="newMessag()">
+                    <!-- input sent a new message -->
+                    <input class="form-control" type="text" v-model="chatIn" id="chatIn"
+                        placeholder="Scrivi un messaggio..." @keyup.enter="newMessag()">
                     <div class="h-100  d-flex justify-content-center align-items-center ">
                         <i class="fa-solid fa-microphone fa-xl"></i>
                     </div>
