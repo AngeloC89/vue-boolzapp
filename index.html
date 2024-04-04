@@ -36,7 +36,6 @@
                         <i class="fa-solid fa-ellipsis-vertical  fa-xl"></i>
                     </div>
                 </nav>
-                <!-- blur focus keyup  -->
                 <div class="notice">
                     <div id="bell">
                         <i class="fa-solid fa-bell-slash fa-xl"></i>
@@ -47,10 +46,10 @@
                     </div>
                 </div>
                 <div class="p-1 search">
-                    <input class="form-control me-2" type="search" placeholder="&#128269; search" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="&#128269; search" aria-label="Search" v-model="searchItem">
                 </div>
                 <div id="listcontacts">
-                    <div id="contact" v-for="(item, index) in contacts" class="d-flex justify-content-between align p-1"
+                    <div id="contact" v-for="(item, index) in searchList" class="d-flex justify-content-between align p-1"
                         :class="{'active' : this.activeId === item.id }" @click="clickActiveItem(item.id)"
                         :key="item.id">
                         <img class="img-fluid rounded-circle m-2" :src="item.avatar" :alt="item.name">
@@ -93,7 +92,7 @@
                     <div class="h-100  d-flex justify-content-center align-items-center "> <i
                             class="fa-regular fa-face-smile fa-xl"></i> </div>
 
-                            <!-- sent a new message -->
+                            <!-- input sent a new message -->
                     <input class="form-control" type="text" v-model="chatIn" id="chatIn" placeholder="Scrivi un messaggio..." @keyup.enter="newMessag()">
                     <div class="h-100  d-flex justify-content-center align-items-center ">
                         <i class="fa-solid fa-microphone fa-xl"></i>
