@@ -28,7 +28,7 @@ createApp({
 /**************** make a new message **************** */     
     createMessag(msg, status) {
       const newObj = {
-        date: dt.now().setLocale('it').toFormat('dd/MM/yyyy HH:mm:ss'),
+        date: dt.now().setLocale('it').toFormat('HH:mm:ss'),
         message: msg,
         status: status,
       }

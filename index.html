@@ -65,10 +65,10 @@
                         </div>
                         <div id="itemtext" class="m-2">
                             <h5>{{item.name}}</h5>
-                            <span>Ultimo messaggio inviato</span>
+                            <span>{{item.messages[item.messages.length-1].message}}</span>
                         </div>
 
-                        <small class="ms-auto ">12:00</small>
+                        <small class="ms-auto ">{{item.messages[item.messages.length-1].date}}</small>
                     </div>
                 </div>
             </div>
