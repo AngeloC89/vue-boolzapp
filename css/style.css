@@ -98,9 +98,6 @@ nav {
     width: calc(100% - 80px);
 }
 
-#mainchat div {
-    width: 40px;
-}
 
 .active {
 
@@ -181,9 +178,23 @@ nav {
 }
 li:hover{
     background-color: rgba(128, 128, 128, 0.376);
+    cursor: pointer;
 }
 li{
     padding:5px;
     list-style: none;
     margin: auto;
+}
+
+/* Emoji */
+
+.emoji{
+    width: 280px;
+    position: absolute;
+    bottom: 60px;
+    left:10px;
+}
+
+.chat nav {
+    position: relative;
 }

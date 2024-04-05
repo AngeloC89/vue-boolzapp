@@ -12,6 +12,8 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+    <link rel="stylesheet" href="./js/emoji-picker.js">
+    <link rel="stylesheet" href="./js/style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="module" src="./js/script.js"></script>
     <title>Boolzapp</title>
@@ -65,13 +67,14 @@
                         </div>
                         <div id="itemtext" class="m-2">
                             <h5>{{item.name}}</h5>
-                            <span>{{item.messages[item.messages.length-1].message}}</span>
+                            <span>{{ getLastMsg(item.id) }}</span>
                         </div>
 
-                        <small class="ms-auto ">{{item.messages[item.messages.length-1].date}}</small>
+                        <small class="ms-auto ">{{ getLastDate(item.id) }}</small>
                     </div>
                 </div>
             </div>
+
             <!-- right side with chat -->
             <div class="chat">
                 <nav class="navbar navbar-expand-lg p-0 bg-body-tertiary">
@@ -79,18 +82,21 @@
                         <img class="img-fluid rounded-circle m-2" :src="activeItem.avatar" :alt="activeItem.name">
                         <div class="m-2">
                             <h5>{{activeItem.name}}</h5>
-                            <span>Ultimo accesso alle 12:00</span>
+                            <span>Ultimo accesso </span>
+                            <span>{{ lastTime }}</span>
                         </div>
                     </div>
+                    <!-- button font awesome -->
                     <div class="w-50 h-100 d-flex justify-content-end align-items-center  right">
                         <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                         <i class="fa-solid fa-paperclip fa-xl"></i>
                         <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                     </div>
                 </nav>
+
                 <!-- section with messages sent and received -->
                 <div class="t-main p-2">
-                    <div class="p-2" v-for="(msg, index) in activeItem.messages">
+                    <div class="p-2" v-for="(msg, index) in activeItem.messages" ref="msg">
                         <div class="msg" :class="msg.status">
                             <div class="d-flex justify-content-between">{{msg.message}}
                                 <div class="btn " @click="openDropdown(index)">
@@ -105,8 +111,10 @@
                     </div>
                 </div>
                 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mainchat">
-                    <div class="h-100  d-flex justify-content-center align-items-center "> <i
-                            class="fa-regular fa-face-smile fa-xl"></i> </div>
+                    <div class="h-100  d-flex justify-content-center align-items-center ">
+                        <i class="fa-regular fa-face-smile fa-xl" @click="showEmoji = !showEmoji"></i>
+                        <Picker @select="onSelectEmoji" class="emoji" :class="{'d-none': !showEmoji}" />
+                    </div>
 
                     <!-- input sent a new message -->
                     <input class="form-control" type="text" v-model="chatIn" id="chatIn"
