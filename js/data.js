@@ -167,7 +167,21 @@ export const contacts = [
             }
         ],
     }
-]
+];
 
 
-
+export const reply = [
+    'Ciao',
+    'sicuramente',
+    'hai proprio ragione',
+    'a tua disposizione',
+    'no',
+    'ok',
+    'volentieri',
+    'mancu cu lignu',
+    'andiamo',
+    'certo',
+    'addirittura',
+    'se po fà',
+    'ma anche no'
+];

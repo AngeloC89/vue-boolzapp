@@ -1,4 +1,5 @@
 import { contacts } from './data.js';
+import { reply } from './data.js';
 import Picker from './emoji-picker.js';
 
 const dt = luxon.DateTime;
@@ -12,6 +13,7 @@ createApp({
   data() { //metodo data()
     return {
       contacts,
+      reply,
       activeId: 1,
       chatIn: '',
       searchItem: '',
@@ -26,7 +28,6 @@ createApp({
       this.activeId = id;
       this.currentMsg = -1;
     },
-
     /**************** make a new message **************** */
     createMessag(msg, status) {
       const newObj = {
@@ -34,23 +35,23 @@ createApp({
         message: msg,
         status: status,
       }
-      return newObj
+      this.activeItem.messages.push(newObj);
+      this.$nextTick(()=> {
+        this.$refs.mes[this.$refs.mes.length - 1].scrollIntoView({behavior: 'smooth'})
+     });
     },
+
     newMessag() {
       if (this.chatIn.trim() === '') {
         return;
       }
-      const msg = this.createMessag(this.chatIn, 'sent');
-      this.activeItem.messages.push(msg);
-      // this.nextTick(()=> {
-      //    this.$refs.msg[this.$refs.mesg.length - 1].scrollIntoView()
-      // })
-
+      this.createMessag(this.chatIn, 'sent'); 
       this.chatIn = ''
       setTimeout(() => {
-        this.activeItem.messages.push(this.createMessag('ok', 'received'));
-
+        this.createMessag(this.randomReply(), 'received');
       }, 1000);
+      
+     
     },
     // function for show dropdown of message with delete the message
     openDropdown(index) {
@@ -88,7 +89,6 @@ createApp({
         return ''
       }
     },
-
     getLastMsg(id) {
       if (this.getContact(id)!== '') {
         return this.getContact(id).message;
@@ -97,7 +97,6 @@ createApp({
       }
   
     },
-
     getLastDate(id) {
       if (this.getContact(id) !== '') {
         return this.getContact(id).date;
@@ -105,6 +104,14 @@ createApp({
         return '';
       }
     },
+    randomReply(){
+      const random = Math.floor(Math.random() * reply.length);
+
+      const replyRandom = reply[random];
+
+      return replyRandom
+
+    }
   },
 
     computed: {
@@ -132,7 +139,8 @@ createApp({
 
     },
     mounted() {
-      console.log(contacts)
+    console.log(this.$refs.mes[this.$refs.mes.length - 1]);
+      
 
 
     },
