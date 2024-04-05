@@ -79,19 +79,19 @@ createApp({
         }
         */
     },
-    getContactMsg(id){
-      const index = this.contacts.findIndex((el) => el.id === id);
-      const lastContact = this.contacts[index].messages.length - 1;
-      if(lastContact >= 0){
-        return this.contacts[index].messages[lastContact];
+    getContact(id){
+      const contact = this.contacts.find((el) => el.id === id);
+      const lastMessageIndex = contact.messages.length - 1;
+      if(lastMessageIndex >= 0){
+        return contact.messages[lastMessageIndex];
       } else {
         return ''
       }
     },
 
     getLastMsg(id) {
-      if (this.getContactMsg(id) === true) {
-        return this.getContactMsg.message;
+      if (this.getContact(id)!== '') {
+        return this.getContact(id).message;
       } else {
         return '';
       }
@@ -99,8 +99,8 @@ createApp({
     },
 
     getLastDate(id) {
-      if (this.getContactMsg(id) === true) {
-        return this.getContactMsg.date;
+      if (this.getContact(id) !== '') {
+        return this.getContact(id).date;
       } else {
         return '';
       }
