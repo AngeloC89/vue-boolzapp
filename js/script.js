@@ -79,21 +79,28 @@ createApp({
         }
         */
     },
-    getLastMsg(id) {
+    getContactMsg(id){
       const index = this.contacts.findIndex((el) => el.id === id);
-      const lastMsgContact = this.contacts[index].messages.length - 1;
-      if (index >= 0) {
-        return this.contacts[index].messages[lastMsgContact].message;
+      const lastContact = this.contacts[index].messages.length - 1;
+      if(lastContact >= 0){
+        return this.contacts[index].messages[lastContact];
       } else {
-        return '';
+        return ''
       }
     },
 
+    getLastMsg(id) {
+      if (this.getContactMsg(id) === true) {
+        return this.getContactMsg.message;
+      } else {
+        return '';
+      }
+  
+    },
+
     getLastDate(id) {
-      const index = this.contacts.findIndex((el) => el.id === id);
-      const lastDateContact = this.contacts[index].messages.length - 1;
-      if (index >= 0) {
-        return this.contacts[index].messages[lastDateContact].date;
+      if (this.getContactMsg(id) === true) {
+        return this.getContactMsg.date;
       } else {
         return '';
       }
