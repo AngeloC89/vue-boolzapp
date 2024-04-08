@@ -41,10 +41,22 @@
                                 @click="theme = !theme" />
                         </div>
                         <i class="fa-solid fa-circle-notch fa-lg"></i>
-                        <i class="fa-solid fa-message fa-lg"></i>
+                        <i class="fa-solid fa-message fa-lg" @click="showNewContact = !showNewContact"></i>
                         <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                     </div>
-                    <div id="addContact"></div>
+                    <div id="addContact" :class="{'d-none' : showNewContact}">                   
+                            <div class="mb-3">
+                              <label for="name" class="form-label"  >Nome Contatto</label>
+                              <input type="email" class="form-control" v-model="nameContact" id="name" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                              <label for="avatar" class="form-label">Avatar</label>
+                              <input type="number" class="form-control" id="avatar" min="1" max="4" v-model="numAvatar">
+                            </div>
+                           
+                            <button type="button" class="btn btn-outline-success px-3" @click="addContact">Add</button>
+                         
+                    </div>
                 </nav>
                 <!-- section for active notice of colour blue -->
                 <div class="notice">

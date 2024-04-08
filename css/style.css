@@ -81,14 +81,15 @@ nav {
 
 #addContact{
     position: absolute;
-    transform: translate(50%, 60%);
+    transform: translate(60%, 60%);
+    padding: 30px;
     background-color: white;
-    width: 600px;
+    width: 300px;
     aspect-ratio: 1 / 1;
     box-shadow: 1px 1px 10px 1px black;
     border-radius: 20px;
     z-index: 3003;
-    display: none;
+    
 }
 
 

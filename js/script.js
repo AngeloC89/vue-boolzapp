@@ -20,6 +20,10 @@ createApp({
       showChat: false,//flag for mediaquery show chat section.
       theme: true,//flag for change theme.
       ulShow: true,//flag for show the delete chat option on chat section.
+      nameContact: '',
+      numAvatar:'',
+      showNewContact: true,
+
 
 
     }
@@ -117,7 +121,32 @@ createApp({
       return replyRandom
 
     },
-    
+    addContact() {
+      let newContact = {
+        id: '',
+        name: this.nameContact,
+        avatar: `./img/avatar_`+this.numAvatar+`.jpg`,
+        visible: true,
+        messages: [
+          {
+            date: dt.now().setLocale('it').toFormat('HH:mm:ss'),
+            message: '',
+            status: ''
+          },
+        ],
+      }
+      let nextId = 0;
+      this.contacts.forEach((el) => {
+        if (nextId < el.id) {
+          nextId = el.id
+        };
+      });
+      newContact.id = nextId + 1;
+      this.contacts.push(newContact)
+      this.showNewContact = true;
+      console.log(this.numAvatar)
+    },
+
   },
   computed: {
     activeItem() {
