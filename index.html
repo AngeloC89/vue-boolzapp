@@ -44,6 +44,7 @@
                         <i class="fa-solid fa-message fa-lg"></i>
                         <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                     </div>
+                    <div id="addContact"></div>
                 </nav>
                 <!-- section for active notice of colour blue -->
                 <div class="notice">
@@ -131,12 +132,14 @@
                     <div class="h-100  d-flex justify-content-center align-items-center ">
                         <div class="mx-2"><i class="fa-regular fa-face-smile fa-xl" @click="showEmoji = !showEmoji"></i>
                         </div>
-                        <Picker @select="onSelectEmoji" class="emoji" :class="{'d-none': !showEmoji}" />
+                        <div :class="{'themeDark' : !theme }" class="emoji">
+                        <Picker @select="onSelectEmoji"  :class="{'d-none': !showEmoji}" />
+                    </div>
                     </div>
 
                     <!-- input sent a new message -->
                     <input class="form-control" type="text" v-model="chatIn" id="chatIn"
-                        placeholder="Scrivi un messaggio..." @keyup.enter="newMessag()">
+                        placeholder="Scrivi un messaggio..." @keyup.enter="newMessag()" :class="{'themeDark' : !theme }">
                     <div class="h-100  d-flex justify-content-center align-items-center ">
                         <div class="mx-2" v-if="!chatIn"> <i class="fa-solid fa-microphone fa-xl"></i></div>
                         <div class="mx-2" v-else type="button" @click="newMessag()"><i
