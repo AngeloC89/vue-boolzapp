@@ -22,23 +22,27 @@
 <body>
 
     <div id="app" class="py-4 ">
-        <div class="container p-0 h-100 d-flex ">
+        <div class="container p-0 h-100 d-flex" :class="{'themeDark' : !theme }">
             <!-- left side contactList -->
-            <div class="contactsC">
+            <div class="contacts" :class="{'showIt' : showChat}">
                 <nav class="navbar navbar-expand-lg p-0  bg-body-tertiary">
                     <!-- icon with my avatar and name -->
-                    <div class=" w-50 h-100 d-flex justify-content-start align-items-center  left">
-                        <img class=" rounded-circle" src="./img/avatar_2.jpg" alt="Angelo">
+                    <div class=" w-50 h-100 p-1 d-flex justify-content-start align-items-center  left">
+                        <img class=" rounded-circle mx-2 " src="./img/avatar_2.jpg" alt="Angelo"
+                            :class="{'themeDark' : !theme }">
                         <div>
                             <h5>Angelo</h5>
                         </div>
                     </div>
                     <!-- button side left -->
                     <div class="w-50 h-100 d-flex justify-content-end align-items-center  right">
-                        <i class="fa-solid fa-circle-notch d-sm-none d-md-none d-lg-block fa-lg"></i>
-                        <i class="fa-solid fa-message d-sm-none d-md-none d-lg-block fa-lg"></i>
-                        <i class="fa-solid fa-ellipsis-vertical d-sm-none d-md-none d-lg-block  fa-lg"></i>
-
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                @click="theme = !theme" />
+                        </div>
+                        <i class="fa-solid fa-circle-notch fa-lg"></i>
+                        <i class="fa-solid fa-message fa-lg"></i>
+                        <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                     </div>
                 </nav>
                 <!-- section for active notice of colour blue -->
@@ -46,7 +50,7 @@
                     <div id="bell">
                         <i class="fa-solid fa-bell-slash fa-xl"></i>
                     </div>
-                    <div>
+                    <div class="text-truncate ">
                         <h6>Ricevi notifiche di nuovi messaggi</h6>
                         <span><a href="#">Attiva notifiche desktop</a></span>
                     </div>
@@ -59,48 +63,60 @@
                 <!-- contacts list  -->
                 <div id="listcontacts">
                     <div class="alert alert-danger" v-if="searchList.length < 1">Nessuna corrispondenza</div>
-                    <div id="contact" v-for="(item, index) in searchList" ref="msg"
-                        class="d-flex justify-content-between align p-1 active:hover"
+                    <div id="contact" v-for="(item, index) in searchList"
+                        class="d-flex justify-content-between p-1 active:hover overflow-hidden "
                         :class="{'active' : this.activeId === item.id }" @click="clickActiveItem(item.id)"
                         :key="item.id">
-                        <div>
+                        <div :class="{'themeDark' : !theme }">
                             <img class=" rounded-circle m-2" :src="item.avatar" :alt="item.name">
                         </div>
-                        <div id="itemtext" class="m-2">
+                        <div id="itemtext" class="m-2 text-truncate ">
                             <h5>{{item.name}}</h5>
                             <span>{{ getLastMsg(item.id) }}</span>
                         </div>
 
-                        <small class="ms-auto ">{{ getLastDate(item.id) }}</small>
+                        <small class="ms-auto text-truncate mx-1  ">{{ getLastDate(item.id) }}</small>
                     </div>
                 </div>
             </div>
 
             <!-- right side with chat -->
-            <div class="chat">
+            <div class="chat" :class="{'showIt' : !showChat}">
+                <!-- activeContact view on nav -->
                 <nav class="navbar navbar-expand-lg p-0 bg-body-tertiary">
                     <div class=" w-50 h-100 d-flex justify-content-start align-items-center  left">
-                        <img class=" rounded-circle m-2" :src="activeItem.avatar" :alt="activeItem.name">
-                        <div class="m-2">
-                            <h5>{{activeItem.name}}</h5>
-                            <span>Ultimo accesso </span>
-                            <span>{{ lastTime }}</span>
+                        <img class=" rounded-circle m-2" :src="activeItem.avatar" :alt="activeItem.name"
+                            :class="{'themeDark' : !theme }">
+                        <div class="m-2 text-truncate  ">
+                            <h6>{{activeItem.name}}</h6>
+                            <div>
+                                <span>Ultimo accesso </span>
+                                <span>{{ lastTime }}</span>
+                            </div>
                         </div>
                     </div>
-                    <!-- button font awesome -->
+                    <!-- button font awesome on nav chat window-->
                     <div class="w-50 h-100 d-flex justify-content-end align-items-center  right">
-                        <i class="fa-solid fa-magnifying-glass fa-xl"></i>
-                        <i class="fa-solid fa-paperclip fa-xl"></i>
-                        <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                        <div class="btn d-block d-md-none" @click="showChat = !showChat"> <i
+                                class="fa-solid fa-arrow-left fa-lg"></i></div>
+                        <div> <i class="fa-solid fa-magnifying-glass fa-lg"></i></div>
+                        <div> <i class="fa-solid fa-paperclip fa-lg"></i></div>
+                        <div class="position-relative" @click="ulShow = !ulShow"> <i
+                                class="fa-solid fa-ellipsis-vertical fa-lg"></i>
+                            <ul class="ul-deleteChat " :class="{'d-none' : ulShow}">
+                                <li @click="">Elimina chat</li>
+                            </ul>
+                        </div>
                     </div>
                 </nav>
 
                 <!-- section with messages sent and received -->
                 <div class="t-main p-2">
-                    <div class="p-2" v-for="(msg, index) in activeItem.messages" ref="mes">
+                    <div class="p-2" v-for="(msg, index) in activeItem.messages" :class="{'themeDark' : !theme }"
+                        ref="mes">
                         <div class="msg" :class="msg.status">
-                            <div class="d-flex justify-content-between">{{msg.message}}
-                                <div class="btn " @click="openDropdown(index)">
+                            <div class="d-flex justify-content-between ">{{msg.message}}
+                                <div @click="openDropdown(index)">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </div>
                                 <ul v-if="currentMsg === index" id="listRemove">
@@ -113,7 +129,8 @@
                 </div>
                 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="mainchat">
                     <div class="h-100  d-flex justify-content-center align-items-center ">
-                        <i class="fa-regular fa-face-smile fa-xl" @click="showEmoji = !showEmoji"></i>
+                        <div class="mx-2"><i class="fa-regular fa-face-smile fa-xl" @click="showEmoji = !showEmoji"></i>
+                        </div>
                         <Picker @select="onSelectEmoji" class="emoji" :class="{'d-none': !showEmoji}" />
                     </div>
 
@@ -121,8 +138,9 @@
                     <input class="form-control" type="text" v-model="chatIn" id="chatIn"
                         placeholder="Scrivi un messaggio..." @keyup.enter="newMessag()">
                     <div class="h-100  d-flex justify-content-center align-items-center ">
-                        <i v-if="!chatIn" class="fa-solid fa-microphone"></i>
-                        <div v-else type="button" @click="newMessag()"><i class="fa-solid fa-paper-plane"></i></div>
+                        <div class="mx-2" v-if="!chatIn"> <i class="fa-solid fa-microphone fa-xl"></i></div>
+                        <div class="mx-2" v-else type="button" @click="newMessag()"><i
+                                class="fa-solid fa-paper-plane fa-xl"></i></div>
 
                     </div>
                 </nav>

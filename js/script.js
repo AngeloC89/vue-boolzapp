@@ -6,8 +6,6 @@ const dt = luxon.DateTime;
 
 const { createApp } = Vue;
 
-
-
 //option object.
 createApp({
   data() { //metodo data()
@@ -19,6 +17,9 @@ createApp({
       searchItem: '',
       currentMsg: -1,
       showEmoji: false,
+      showChat: false,//flag for mediaquery show chat section.
+      theme: true,//flag for change theme.
+      ulShow: true,//flag for show the delete chat option on chat section.
 
 
     }
@@ -27,6 +28,9 @@ createApp({
     clickActiveItem(id) {
       this.activeId = id;
       this.currentMsg = -1;
+      this.showChat = !this.showChat
+      console.log(this.activeId)
+      console.log(this.getContact(this.activeId))
     },
     /**************** make a new message **************** */
     createMessag(msg, status) {
@@ -36,22 +40,23 @@ createApp({
         status: status,
       }
       this.activeItem.messages.push(newObj);
-      this.$nextTick(()=> {
-        this.$refs.mes[this.$refs.mes.length - 1].scrollIntoView({behavior: 'smooth'})
-     });
+      this.$nextTick(() => {
+        this.$refs.mes[this.$refs.mes.length - 1].scrollIntoView({ behavior: 'smooth' })
+      });
     },
 
     newMessag() {
       if (this.chatIn.trim() === '') {
         return;
       }
-      this.createMessag(this.chatIn, 'sent'); 
-      this.chatIn = ''
+      this.createMessag(this.chatIn, 'sent');
+      this.chatIn = '';
       setTimeout(() => {
+
         this.createMessag(this.randomReply(), 'received');
       }, 1000);
-      
-     
+
+
     },
     // function for show dropdown of message with delete the message
     openDropdown(index) {
@@ -80,22 +85,22 @@ createApp({
         }
         */
     },
-    getContact(id){
+    getContact(id) {
       const contact = this.contacts.find((el) => el.id === id);
       const lastMessageIndex = contact.messages.length - 1;
-      if(lastMessageIndex >= 0){
+      if (lastMessageIndex >= 0) {
         return contact.messages[lastMessageIndex];
       } else {
         return ''
       }
     },
     getLastMsg(id) {
-      if (this.getContact(id)!== '') {
+      if (this.getContact(id) !== '') {
         return this.getContact(id).message;
       } else {
         return '';
       }
-  
+
     },
     getLastDate(id) {
       if (this.getContact(id) !== '') {
@@ -104,45 +109,34 @@ createApp({
         return '';
       }
     },
-    randomReply(){
+    randomReply() {
       const random = Math.floor(Math.random() * reply.length);
 
       const replyRandom = reply[random];
 
       return replyRandom
 
-    }
+    },
+    
+  },
+  computed: {
+    activeItem() {
+      return this.contacts.find((el) => el.id === this.activeId)
+    },
+    searchList() {
+      return this.contacts.filter((el) => el.name.toLowerCase().includes(this.searchItem.toLowerCase()));
+    },
+    lastTime() {
+      const index = this.activeItem.messages.length - 1;
+      if (index >= 0 && this.activeItem.messages[index].status === 'received') {
+        return this.activeItem.messages[index].date;
+      } else {
+        return '';
+      }
+    },
+  },
+  mounted() {
+    console.log();
   },
 
-    computed: {
-      activeItem() {
-        return this.contacts.find((el) => el.id === this.activeId)
-      },
-
-      searchList() {
-        return this.contacts.filter((el) => el.name.toLowerCase().includes(this.searchItem.toLowerCase()));
-      },
-
-      lastTime() {
-        const index = this.activeItem.messages.length - 1;
-        if (index >= 0 && this.activeItem.messages[index].status === 'received') {
-          return this.activeItem.messages[index].date;
-        } else {
-          return '';
-        }
-      },
-
-
-
-
-
-
-    },
-    mounted() {
-    console.log(this.$refs.mes[this.$refs.mes.length - 1]);
-      
-
-
-    },
-
-  }).component('Picker', Picker).mount('#app')
+}).component('Picker', Picker).mount('#app')
